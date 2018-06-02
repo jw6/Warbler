@@ -31,5 +31,19 @@ messageSchema.pre('remove', async function(next) {
   }
 })
 
+messageSchema.statics.findByUsername = function (username, callback) {
+  let query = this.findOne();
+
+  user.findOne({ 'username': username, function(error, user) {
+    query
+    .where(
+      {user: user._id} 
+    )
+    .exec(callback)
+    }
+  });
+  return query;
+}
+
 const Message = mongoose.model("Message", messageSchema);
 module.exports = Message;

@@ -21,19 +21,45 @@ app.use(
   messageRoutes
 );
 
-app.get("/api/messages", loginRequired, async function(req, res, next) {
+app.get("/api/messages/:username", loginRequired, async function (req, res, next) {
   try {
     let messages = await db.Message.find()
-    .sort({ createdAt: "desc" })
-    .populate("user", {
-      username: true,
-      profileImageUrl: true
-    });
-    return res.status(200).json(messages);
-  } catch (error) {
-    return next(error);
+      .sort({ createdAt: "desc" })
+      .populate("user", {
+        username: true,
+        profileImageUrl: true
+      });
+    // return res.status(200).json(messages);
+
+    return res.status(200).json(messages.filter(message => message.user.username === req.params.username));
+  } catch (err) {
+    return next(err);
   }
-})
+});
+
+
+// filter specific message by username
+app.get("/api/messages/user/:username", loginRequired, async function (req, res, next) {
+  try {
+    let messages = await db.Message.findByUsername(req.params.username, function(err, user) {
+      if(err) {
+        res.send(err)
+      }
+      res.json(messages);
+    })
+      .sort({ createdAt: "desc" })
+      .populate("user", {
+        username: true,
+        profileImageUrl: true
+      });
+    // return res.status(200).json(messages);
+
+    // filter message by username 
+    return res.status(200).json(messages.filter(message => message.user.username === req.params.username));
+  } catch (err) {
+    return next(err);
+  }
+});
 
 app.use(function (req, res, next) {
   let err = new Error("Not Found");

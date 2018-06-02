@@ -1,5 +1,6 @@
 const db = require("../models");
 
+// api/users/:id/meessages/
 exports.createMessage = async function(req, res, next) {
   try {
     let message = await db.Message.create({
@@ -20,21 +21,33 @@ exports.createMessage = async function(req, res, next) {
 }
 
 // api/users/:id/messages/:message_id
-exports.getMessage = async function(req, res, next) {
+
+exports.getMessage = async function (req, res, next) {
   try {
-    let message = await db.Message(req, res, next);
+    let message = await db.Message.findById(req.params.message_id);
     return res.status(200).json(message);
-  } catch (error) {
-    return next(error);    
+  } catch (err) {
+    return next(err);
   }
-}
+};
 
 // api/users/:id/messages/:message_id
 exports.deleteMessage = async function(req, res, next) {
   try {
+    // findByIdAndRemove does not apply here since pre remove hook remove message by Id
     let foundMessage = await db.Message.findById(req.params.message_id);
     await foundMessage.remove();
+    return res.status(200).json(foundMessage);
   } catch (error) {
     return next(error);
+  }
+}
+
+// api/users/:id/messages/:message_id
+exports.updateMessage = async function(req, res, next) {
+  try {
+    
+  } catch (error) {
+    
   }
 }

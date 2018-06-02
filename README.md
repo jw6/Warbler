@@ -73,7 +73,7 @@ http POST localhost:8081/api/users/:userid/messages text="message"
 
 Example for GET all message with an user id
 ```
-http GET localshot:8081/api/users/:userid/message
+http GET localshot:8081/api/users/:userid/messages
 ```
 
 Example for CREATE an user with jwt token
