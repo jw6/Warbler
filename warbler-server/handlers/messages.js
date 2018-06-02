@@ -21,7 +21,6 @@ exports.createMessage = async function(req, res, next) {
 }
 
 // api/users/:id/messages/:message_id
-
 exports.getMessage = async function (req, res, next) {
   try {
     let message = await db.Message.findById(req.params.message_id);
@@ -46,8 +45,13 @@ exports.deleteMessage = async function(req, res, next) {
 // api/users/:id/messages/:message_id
 exports.updateMessage = async function(req, res, next) {
   try {
-    
+    let updatedMessage = await db.Message.findByIdAndUpdate(
+      req.params.message_id,
+      {text : req.body.text}
+    );
+    await updatedMessage.save();
+    return res.status(200).json(updatedMessage);
   } catch (error) {
-    
+    return next(error);
   }
 }
