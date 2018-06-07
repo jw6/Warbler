@@ -1,22 +1,25 @@
 const mongoose = require("mongoose");
 const user = require("./user");
 
-const messageSchema = new mongoose.Schema({
-  text: {
-    type: String,
-    required: true,
-    mexLength: 160
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+const messageSchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+      mexLength: 160
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  }, 
+  {
+    timestamps: true
   }
-}, {
-  timestamps: true
-});
+);
 
 // pre remove hook, that also remove message id in user if message is removed.
-messageSchema.pre('remove', async function(next) {
+messageSchema.pre("remove", async function (next) {
   try {
     // find a user
     let user = await User.findById(this.user);
@@ -24,12 +27,12 @@ messageSchema.pre('remove', async function(next) {
     user.messages.remove(this.id);
     // save that user
     await user.save();
-    // return next 
+    // return next
     return next();
-  } catch (error) {
-    return next(error);
+  } catch (err) {
+    return next(err);
   }
-})
+});
 
 messageSchema.statics.findByUsername = function (username, callback) {
   let query = this.findOne();

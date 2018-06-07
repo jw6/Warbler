@@ -48,7 +48,7 @@ warbler/warbler-server/models/index.js
 
 Open a browser, warbler-server should be running on localhost:8081
 
-## Running the tests
+## API tests with HTTPIE
 
 Use httpie to test backend APIs
 
@@ -61,14 +61,19 @@ Example for CREATE an user
 http POST localhost:8081/api/auth/signup username=<your_username> password=<your_password> email=<your_email>
 ```
 
-Example for GET an user
+Example for GET an user's information
 ```
 http POST localhost:8081/api/auth/signin password=<your_password> email=<your_email>
 ```
 
-Example for CREATE an user
+Example for CREATE a message with an user id
 ```
-http POST localhost:8081/api/users/:userid/messages text="message"
+http POST localhost:8081/api/users/:userid/messages "Authorization:Bearer <json web token is required here> text="message"
+```
+
+Example fore GET a message with message id
+```
+http GET lcoalhost:8081/api/users/:userid/messages/:message_id "Authorization:Bearer <json web token is required here>"
 ```
 
 Example for GET all message with an user id
@@ -76,10 +81,6 @@ Example for GET all message with an user id
 http GET localshot:8081/api/users/:userid/messages
 ```
 
-Example for CREATE an user with jwt token
-```
-http POST localhost:8081/api/users/:userid/massages "Authorization:Bearer <jwt token>" text=<your message>
-```
 ### Break down into end to end tests
 
 Explain what these tests test and why

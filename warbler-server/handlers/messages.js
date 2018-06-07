@@ -31,16 +31,17 @@ exports.getMessage = async function (req, res, next) {
 };
 
 // api/users/:id/messages/:message_id
-exports.deleteMessage = async function(req, res, next) {
+exports.deleteMessage = async function (req, res, next) {
   try {
-    // findByIdAndRemove does not apply here since pre remove hook remove message by Id
     let foundMessage = await db.Message.findById(req.params.message_id);
+    // let foundMessage = await db.Message.findByIdRemove(req.params.message_id);
     await foundMessage.remove();
+
     return res.status(200).json(foundMessage);
-  } catch (error) {
-    return next(error);
+  } catch (err) {
+    return next(err);
   }
-}
+};
 
 // api/users/:id/messages/:message_id
 exports.updateMessage = async function(req, res, next) {
