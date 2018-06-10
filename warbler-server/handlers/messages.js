@@ -51,7 +51,13 @@ exports.updateMessage = async function(req, res, next) {
       {text : req.body.text}
     );
     await updatedMessage.save();
-    return res.status(200).json(updatedMessage);
+    // return res.status(200).json(updatedMessage);
+
+    if(res.statusCode >= 200 && res.statusCode <= 300 ) {
+      return res.status(200).send("updated successfully");
+    } else {
+      return next(error);
+    }
   } catch (error) {
     return next(error);
   }
