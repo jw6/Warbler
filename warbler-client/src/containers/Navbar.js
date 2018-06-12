@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Logo from "../images/warbler-logo.png";
 
 class Navbar extends Component {
@@ -21,9 +21,10 @@ class Navbar extends Component {
               <Link to="/signin">Log in</Link>
             </li>
           </ul>
+          )}
         </div>
       </nav>
-    )
+    );
   }
 }
 
@@ -33,4 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Navbar);
+export default connect(mapStateToProps)(Navbar);
