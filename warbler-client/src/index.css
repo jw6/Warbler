@@ -52,4 +52,6 @@ ul.nav.navbar-nav li {
   padding: 1rem;
   background-position: center center;
   background-size: cover;
+  color: #fff;
+  text-shadow: 0 0 8px #66757f;
 }
