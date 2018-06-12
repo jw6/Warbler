@@ -26,7 +26,17 @@ export default class AuthForm extends Component {
                 id="email" 
                 onChange={this.handleChange} 
                 value={email}
-                type="text"/>
+                type="text"
+              />
+              <label htmlFor="password">Password:</label>
+              <input
+                name="password"
+                className="form-control"
+                id="password"
+                onChange={this.handleChange}
+                value={password}
+                type="password"
+              />
             </form>
           </div>
         </div>
