@@ -6,7 +6,7 @@ const Homepage = () => (
     <h1>What's Happening</h1>
     <h4>New to Warbler</h4>
     <Link to="/signup" className="btn btn-primary">
-      Sign Up
+      Sign up here
     </Link>
   </div>
 )
