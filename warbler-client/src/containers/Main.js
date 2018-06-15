@@ -4,18 +4,17 @@ import { connect } from "react-redux";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import { authUser } from "../store/actions/auth";
-import { removeError } from "../store/actions/errors"; 
+import { removeError } from "../store/actions/errors";
 
 const Main = props => {
-  const { authUser, errors, removeError } = props;
+  const { authUser, errors, removeError, currentUser } = props;
   return (
     <div className="container">
       <Switch>
-        <Route 
-          exact 
-          path="/" 
-          render={props => 
-          <Homepage {...props} />} 
+        <Route
+          exact
+          path="/"
+          render={props => <Homepage currentUser={currentUser} {...props} />}
         />
         <Route
           exact
@@ -62,4 +61,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { authUser, removeError })(Main));
+export default withRouter(
+  connect(mapStateToProps, { authUser, removeError })(Main)
+);
