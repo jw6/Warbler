@@ -9,6 +9,13 @@ export function setCurrentUser(user) {
   };
 }
 
+export function logout(){
+  return dispath => {
+    localStorage.clear();
+    dispath(setCurrentUser({}));
+  }
+}
+
 export function authUser(type, userData) {
   return dispatch => {
     // wrap our thunk in a promise so we can wait for the API call
