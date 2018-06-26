@@ -18,17 +18,10 @@ const likeSchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre("save", function (next) {
-  Message.findByIdAndUpdate(this.messageID, { $inc: { likeCount: 1 }}, function(err, message) {
-    if (err) next(err);
-    next();
-  });
-});
-
 userSchema.pre("remove", function (next) {
   Message.findByIdAndUpdate(this.messageID, { $inc: { likeCount: -1 }}, function(err, message) {
     if (err) next(err);
-    next()
+    next();
   });
 });
 
