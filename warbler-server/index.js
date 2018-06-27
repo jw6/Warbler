@@ -37,6 +37,15 @@ app.get("/api/messages/:username", loginRequired, async function (req, res, next
   }
 });
 
+app.get('/api/messages', function (req, res, next) {
+  db.Message.find().sort({ createAt: 'desc' })
+    .populate("userId", { username: true, profileImageUrl: true })
+    .then(function (messages) {
+      res.json(messages);
+    }).catch(function (err) {
+      res.status(500).json(err);
+    })
+});
 
 // filter specific message by username
 app.get("/api/messages/user/:username", loginRequired, async function (req, res, next) {
