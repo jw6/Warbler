@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// api/users/:id/messages/:message_id/like
+// api/likeAPI/users/:id/messages/:message_id/like
 exports.createLike = async function(req, res, next) {
   try {
     let like = await db.Like.create({
@@ -16,7 +16,7 @@ exports.createLike = async function(req, res, next) {
   }
 }
 
-// api/users/:id/messages/:message_id/unlike
+// api/likeAPI/users/:id/messages/:message_id/unlike
 exports.deleteLike = async function (req, res, next) {
   try {
     let foundLike = await db.Like.find({messageID:req.params.message_id, userID:req.params.id});
