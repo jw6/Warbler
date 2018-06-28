@@ -4,6 +4,11 @@ import { configureStore } from "../store";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./Navbar";
 import Main from "./Main";
+
+
+const store = configureStore();
+
+
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
 
