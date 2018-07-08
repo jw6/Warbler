@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 function withAuth(ComponentToBeRendered){
   class Authenticate extends Component {
     componentWillMount() {
-      if(!this.props.isAuthenticated) {
+      if(this.props.isAuthenticated === false) {
         this.props.history.push("/signin");
       }
     }
 
     componentWillUpdate(nextProps) {
-      if(!nextProps.isAuthenticated === false) {
+      if(nextProps.isAuthenticated === false) {
         this.props.history.push("/signin");
       }
     }
@@ -24,9 +24,8 @@ function withAuth(ComponentToBeRendered){
     return {
       isAuthenticated: state.currentUser.isAuthenticated
     };
-
-    return connect(mapStateToProps)(Authenticate);
   }
+  return connect(mapStateToProps)(Authenticate);
 }
 
 export default withAuth;
