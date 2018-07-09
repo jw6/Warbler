@@ -6,18 +6,19 @@ const messageSchema = new mongoose.Schema(
     text: {
       type: String,
       required: true,
-      maxLength: 160
+      mexLength: 160
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     }
-  },
+  }, 
   {
     timestamps: true
   }
 );
 
+// pre remove hook, that also remove message id in user if message is removed.
 messageSchema.pre("remove", async function (next) {
   try {
     // find a user
