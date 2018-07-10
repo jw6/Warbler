@@ -19,12 +19,10 @@ const userSchema = new mongoose.Schema({
   profileImageUrl: {
     type: String
   },
-  messages: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Message"
-    }
-  ]
+  messages: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Message'
+  }]
 });
 
 userSchema.pre("save", async function (next) {
@@ -33,6 +31,7 @@ userSchema.pre("save", async function (next) {
       return next();
     }
     let hashedPassword = await bcrypt.hash(this.password, 10);
+    
     this.password = hashedPassword;
     return next();
   } catch (err) {
