@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const User = require("./user");
+const mongoose = require('mongoose');
+const User = require('./user');
 
 const messageSchema = new mongoose.Schema(
   {
@@ -10,7 +10,7 @@ const messageSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+      ref: 'User'
     }
   }, 
   {
@@ -19,7 +19,7 @@ const messageSchema = new mongoose.Schema(
 );
 
 // pre remove hook, that also remove message id in user if message is removed.
-messageSchema.pre("remove", async function (next) {
+messageSchema.pre('remove', async function (next) {
   try {
     // find a user
     let user = await User.findById(this.user);
@@ -48,5 +48,5 @@ messageSchema.statics.findByUsername = function (username, callback) {
   return query;
 }
 
-const Message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model('Message', messageSchema);
 module.exports = Message;

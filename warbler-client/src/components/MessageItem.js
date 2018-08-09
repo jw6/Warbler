@@ -28,8 +28,14 @@ const MessageItem = ({
             </Moment>
           </span>
           <p>{text}</p>
+          <button type="button" className="btn btn-sm btn-primary btn-block">
+            Like
+          </button>
+          <button type="button" className="btn btn-sm btn-secondary btn-block">
+            Comment
+          </button>
           {isCorrectUser && (
-            <a className="btn btn-danger" onClick={removeMessage}>
+            <a className="btn btn-sm btn-danger btn-block" onClick={removeMessage}>
               Delete
             </a>
           )}
