@@ -96,6 +96,7 @@ Example for GET all message with an user id
 http GET localshot:8081/api/users/:userid/messages
 ```
 
+
 ## Authors
 
 * **Jay Wang** - *Initial work* - [jw6](https://github.com/jw6/warbler)
@@ -105,9 +106,3 @@ See also the list of [contributors](https://github.com/jw6/warbler/contributors)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
