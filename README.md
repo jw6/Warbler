@@ -96,15 +96,6 @@ Example for GET all message with an user id
 http GET localshot:8081/api/users/:userid/messages
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-
 ## Authors
 
 * **Jay Wang** - *Initial work* - [jw6](https://github.com/jw6/warbler)
