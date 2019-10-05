@@ -1,6 +1,6 @@
 # Warbler 
 
-Warbler is a messaging and task management app that allows users to login and create messages for other users to like and comment. Meanwhile, user can also create a ScrumBoard for project management and invite others users to join and work on the project.
+Warbler is a messaging and task management app that allows users to login and create messages for other users to like and comment.
 
 ## Getting Started
 
