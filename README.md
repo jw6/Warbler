@@ -18,7 +18,7 @@ node -v
 npm -v
 ```
 
-If they're not installed at this point, please refer to
+If they're not installed at this point, please refer tos
 
 * [Node](https://nodejs.org/en/) - Node.js® - a JavaScript runtime
 
