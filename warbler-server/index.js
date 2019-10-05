@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/message");
+const likeRoutes = require("./routes/like");
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 const db = require("./models");
 const PORT = 8081;
@@ -73,6 +74,13 @@ app.get("/api/messages/user/:username", loginRequired, async function (req, res,
     return next(err);
   }
 });
+
+app.use(
+  "/api/likeAPI/users/:id/messages/:message_id",
+  loginRequired,          // make sure you're login
+  ensureCorrectUser,      // make sure you're the correct user 
+  likeRoutes
+);
 
 app.use(function (req, res, next) {
   let err = new Error("Not Found");
